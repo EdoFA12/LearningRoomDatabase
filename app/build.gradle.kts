@@ -34,10 +34,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-    val roomVersion = "2.5.2"
+    val roomVersion = "2.6.1"
     val lifecycle_version = "2.6.0"
 
     implementation(libs.androidx.core.ktx)
