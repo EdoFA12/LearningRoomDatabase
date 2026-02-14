@@ -1,5 +1,8 @@
 package com.learning.learningroomdatabase.ui
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,24 +25,37 @@ class AuditAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
-        holder.deleteButton.setOnClickListener {
-            onDeleteClicked(item)
-        }
+        holder.bind(getItem(position), onDeleteClicked)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvNama: TextView = itemView.findViewById(R.id.tv_item_nama)
-        private val tvLokasi: TextView = itemView.findViewById(R.id.tv_item_lokasi)
+        private val tvLokasiTemuan: TextView = itemView.findViewById(R.id.tv_item_lokasi_temuan)
+        private val tvLokasidokumentasi: TextView = itemView.findViewById(R.id.tv_item_lokasi_dokumentasi)
         private val tvStatus: TextView = itemView.findViewById(R.id.tv_item_status)
-        val deleteButton: Button = itemView.findViewById(R.id.btn_delete_item)
+        private val deleteButton: Button = itemView.findViewById(R.id.btn_delete_item)
 
-        fun bind(audit: AuditEntity) {
+        private fun isNetworkAvailable(context: Context): Boolean {
+            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val network = connectivityManager.activeNetwork ?: return false
+            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+            return when {
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                else -> false
+            }
+        }
+
+        fun bind(audit: AuditEntity, onDeleteClicked: (AuditEntity) -> Unit) {
             tvNama.text = audit.nama_petugas
-            tvLokasi.text = audit.lokasi_temuan
-            // gunakan string resource untuk format agar dapat diterjemahkan
+            tvLokasiTemuan.text = audit.lokasi_temuan
+            tvLokasidokumentasi.text = audit.lokasi
+
             tvStatus.text = itemView.context.getString(R.string.status_format, audit.status_prioritasi)
+
+            deleteButton.setOnClickListener {
+                onDeleteClicked(audit)
+            }
         }
     }
 

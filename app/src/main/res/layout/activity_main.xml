@@ -4,10 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:gravity="center"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="50dp"
     tools:context=".ui.AuditMainActivity">
 
 
@@ -21,7 +21,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_input_data_lokasi"
+        android:id="@+id/et_input_data_lokasi_temuan"
         android:layout_marginBottom="20dp"
         android:layout_marginHorizontal="20dp"
         android:hint="Masukkan Lokasi Temuan"
@@ -35,9 +35,20 @@
         android:layout_marginHorizontal="20dp"
         android:hint="Masukkan Status Temuan"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_input_data_lokasi"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:hint="Lokasi Temuan"
+        android:drawableEnd="@drawable/ic_camera"
+        />
+
     <Button
         android:id="@+id/btn_save_data"
         android:text="Simpan Data"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
@@ -46,8 +57,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_audits"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         tools:listitem="@layout/item_audit"
         android:layout_marginTop="12dp"
         android:padding="12dp"/>
@@ -63,5 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </LinearLayout>

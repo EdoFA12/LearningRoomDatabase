@@ -9,4 +9,8 @@ data class AuditEntity(
     val nama_petugas: String,
     val lokasi_temuan: String,
     val status_prioritasi: Int,
+    val lokasi: String?,
+    val fotoPath: String?,
+    val latitude: Double?,
+    val longitude: Double?
 )

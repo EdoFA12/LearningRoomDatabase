@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import com.learning.learningroomdatabase.data.local.dao.AuditDao
 import com.learning.learningroomdatabase.data.local.entity.AuditEntity
 
-@Database(entities = [AuditEntity::class], version = 1, exportSchema =  false)
+@Database(entities = [AuditEntity::class], version = 2, exportSchema =  false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun auditDao(): AuditDao

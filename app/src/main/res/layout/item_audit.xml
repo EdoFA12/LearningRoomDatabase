@@ -13,7 +13,15 @@
         android:text="Nama Petugas"/>
 
     <TextView
-        android:id="@+id/tv_item_lokasi"
+        android:id="@+id/tv_item_lokasi_temuan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lokasi Temuan"
+        android:layout_marginTop="4dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_item_lokasi_dokumentasi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lokasi Temuan"
